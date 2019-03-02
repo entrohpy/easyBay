@@ -20,6 +20,9 @@ application/json
 ```POST https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=20```
 
 *KEY* limit = // enter number of results required
+*KEY* filter= price:[..69],priceCurrency:USD,conditions:{NEW},deliveryPostalCode:90024,deliveryCountry:US,returnsAccepted:true,excludeSellers:{solesurrender}
+
+*// price:[..maxAmt], conditions:{NEW or USED}, deliveryPostalCode: postal code, returnsAccepted:(true or empty), excludeSellers:{ebay ID number}*
 {
   "image": " " // Base64 string
 }
