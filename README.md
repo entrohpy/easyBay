@@ -15,12 +15,14 @@ application/json
 ```GET https://api.ebay.com/buy/browse/v1/item_summary/search?q=nike```
 
 Key q=     *// Add keyword search*
+
 Key filter= price:[..69],priceCurrency:USD,conditions:{NEW},deliveryPostalCode:90024,deliveryCountry:US,returnsAccepted:true,excludeSellers:{solesurrender}                                           *// price:[..maxAmt], conditions:{NEW or USED}, deliveryPostalCode: postal code, returnsAccepted:(true or empty), excludeSellers:{ebay ID number}*
 
 ## POST Request for image search
 ```POST https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=20```
 
 Key limit =    *// enter number of results required*
+
 Key filter= price:[..69],priceCurrency:USD,conditions:{NEW},deliveryPostalCode:90024,deliveryCountry:US,returnsAccepted:true,excludeSellers:{solesurrender}
 *// price:[..maxAmt], conditions:{NEW or USED}, deliveryPostalCode: postal code, returnsAccepted:(true or empty), excludeSellers:{ebay ID number}*
 
