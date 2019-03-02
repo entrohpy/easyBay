@@ -6,6 +6,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
   var cameraVC: UIImagePickerController!
   
   var image: UIImage?
+  var responseJSON: Dictionary<String, Any>?
+  
   
   @IBAction func tappedCameraButton(_ sender: Any) {
     
@@ -34,7 +36,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let destVC = segue.destination as! SearchImageViewController
-    destVC.image = self.image
+    destVC.response = self.responseJSON
+    destVC.image = image
   }
   
   override func viewDidLoad() {
