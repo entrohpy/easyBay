@@ -43,33 +43,27 @@
                     </view>
                     <navigationItem key="navigationItem" title="EasyBay" id="bg7-Ez-xBB"/>
                     <connections>
-                        <segue destination="hFf-1S-5dg" kind="show" identifier="imageDisplay" id="Jy0-oj-938"/>
+                        <segue destination="qIl-te-goh" kind="show" identifier="searchImage" id="gu2-Cc-Ipm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079.2" y="133.5832083958021"/>
         </scene>
-        <!--Image View Controller-->
-        <scene sceneID="Ks6-YP-n4o">
+        <!--Search Image View Controller-->
+        <scene sceneID="lbH-KO-imF">
             <objects>
-                <viewController id="hFf-1S-5dg" customClass="ImageViewController" customModule="EasyBay" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6Xg-BJ-c1q">
+                <viewController id="qIl-te-goh" customClass="SearchImageViewController" customModule="EasyBay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oSZ-fN-JVg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-Ys-Id7">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ssE-IX-NuM"/>
+                        <viewLayoutGuide key="safeArea" id="EGu-da-Cx7"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Rh-oS-jNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SeK-rh-KLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="147"/>
+            <point key="canvasLocation" x="1900" y="476"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6N0-Pm-8n4">

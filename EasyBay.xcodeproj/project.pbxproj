@@ -15,7 +15,8 @@
 		E35CEFD1222A958D00F81FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35CEFCF222A958D00F81FB3 /* LaunchScreen.storyboard */; };
 		E35CEFDC222A958D00F81FB3 /* EasyBayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFDB222A958D00F81FB3 /* EasyBayTests.swift */; };
 		E35CEFE7222A958D00F81FB3 /* EasyBayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFE6222A958D00F81FB3 /* EasyBayUITests.swift */; };
-		E35CEFF9222AB09D00F81FB3 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFF8222AB09D00F81FB3 /* ImageViewController.swift */; };
+		E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */; };
+		E35CEFFD222B0F6600F81FB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E35CEFFC222B0F6500F81FB3 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,8 @@
 		E35CEFE2222A958D00F81FB3 /* EasyBayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35CEFE6222A958D00F81FB3 /* EasyBayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBayUITests.swift; sourceTree = "<group>"; };
 		E35CEFE8222A958D00F81FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E35CEFF8222AB09D00F81FB3 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageViewController.swift; sourceTree = "<group>"; };
+		E35CEFFC222B0F6500F81FB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		E35CEFB7222A958B00F81FB3 = {
 			isa = PBXGroup;
 			children = (
+				E35CEFFC222B0F6500F81FB3 /* README.md */,
 				E35CEFC2222A958B00F81FB3 /* EasyBay */,
 				E35CEFDA222A958D00F81FB3 /* EasyBayTests */,
 				E35CEFE5222A958D00F81FB3 /* EasyBayUITests */,
@@ -103,7 +106,7 @@
 			children = (
 				E35CEFC3222A958B00F81FB3 /* AppDelegate.swift */,
 				E35CEFC5222A958B00F81FB3 /* ViewController.swift */,
-				E35CEFF8222AB09D00F81FB3 /* ImageViewController.swift */,
+				E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */,
 				E35CEFC7222A958B00F81FB3 /* Main.storyboard */,
 				E35CEFCD222A958D00F81FB3 /* Assets.xcassets */,
 				E35CEFCF222A958D00F81FB3 /* LaunchScreen.storyboard */,
@@ -237,6 +240,7 @@
 			files = (
 				E35CEFD1222A958D00F81FB3 /* LaunchScreen.storyboard in Resources */,
 				E35CEFCE222A958D00F81FB3 /* Assets.xcassets in Resources */,
+				E35CEFFD222B0F6600F81FB3 /* README.md in Resources */,
 				E35CEFC9222A958B00F81FB3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +268,7 @@
 			files = (
 				E35CEFC6222A958B00F81FB3 /* ViewController.swift in Sources */,
 				E35CEFC4222A958B00F81FB3 /* AppDelegate.swift in Sources */,
-				E35CEFF9222AB09D00F81FB3 /* ImageViewController.swift in Sources */,
+				E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */,
 				E35CEFCC222A958B00F81FB3 /* EasyBay.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
