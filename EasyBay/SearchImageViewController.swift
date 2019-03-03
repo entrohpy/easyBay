@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import CoreML;
+import CoreML
 
 class SearchImageViewController: UIViewController {
   let model = my_model()
   
+  var imageJSONs: [Dictionary<String, Any>] = []
   var responseJSON: Dictionary<String, Any> = [:]
   
   private let reuseIdentifier = "ProductCell"
@@ -21,79 +22,80 @@ class SearchImageViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let x:Bool=checkIfScam();
-    print(x)
+//    let x:Bool=checkIfScam();
+//    print(x)
     
-    for item in (responseJSON["itemSummaries"] as! [[String: Any]])  {
-      let product = ProductCells()
-      var id : String
-      var p: Double
-      product.title = item["title"] as! String
-      id = item["itemId"] as! String
-      if let prices = (item["price"] as? [String : Any]) {
-        product.price = Double((prices["value"] as! NSString).floatValue)
-        p = Double((prices["value"] as! NSString).floatValue)
-      }
-      
-      var fPercentage: Double
-      var fScore: Int
-      
-//      if let sellerDetails = (item["seller"] as? [String : Any]) {
-//        fPercentage=sellerDetails["feedbackPercentage"] as! Double
-//        fScore=sellerDetails["feedbackScore"] as! Int
-//        product.seller = sellerDetails["username"] as! String
-//      }
-//      
-//      if let sellerDetails = (item["seller"] as? [String : Any]) {
-//        fPercentage=sellerDetails["feedbackPercentage"] as! Double
-//        fScore=sellerDetails["feedbackScore"] as! Int
-//        product.seller = sellerDetails["username"] as! String
-//      }
-      
-      if let image = (item["image"] as? [String : Any]) {
-        product.imageURL = URL(string: image["imageUrl"] as! String)!
-      }
-            print(product.title)
-            print(product.price)
-            print(product.seller)
-            print(product.imageURL)
-      
-      
-      // HTTP Requests
-      let oauthSession = URLSession.shared
-      
-      // generate OAuth Application token
-      var oauthToken: String? = nil
-      
-      var oauthRequest = URLRequest(url: URL(string: "https://api.ebay.com/identity/v1/oauth2/token")!)
-      oauthRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content_Type")
-      oauthRequest.addValue("Basic QXJ5YW5Bcm8tRWFzeUJheS1QUkQtNjE2ZGU1NmRjLTNkZWYzNzZkOlBSRC0xNmRlNTZkY2FkYTgtOTVhZi00YzJlLWFlN2QtYzFlMw==", forHTTPHeaderField: "Authorization")
-      
-      let scope = "https://api.ebay.com/oauth/api_scope"
-      let encodedURL = scope.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-      oauthRequest.httpBody = "grant_type=client_credentials&scope=\(encodedURL!)".data(using: .utf8)
-      oauthRequest.httpMethod = "POST"
-      
-      let activityIndicator = UIActivityIndicatorView(style: .gray)
-      self.view.addSubview(activityIndicator)
-      activityIndicator.frame = self.view.bounds
-      activityIndicator.startAnimating()
-      
-      let oauthSem = DispatchSemaphore(value: 0)
-      let oauthTask = oauthSession.dataTask(with: oauthRequest, completionHandler: {data, response, error in
-        guard let data = data, error == nil else {
-          print(error?.localizedDescription ?? "No data")
-          return
+    for json in imageJSONs {
+      for item in (json["itemSummaries"] as! [[String: Any]])  {
+        let product = ProductCells()
+//        var id : String
+//        var p: Double
+        product.title = item["title"] as! String
+//        id = item["itemId"] as! String
+        if let prices = (item["price"] as? [String : Any]) {
+          product.price = Double((prices["value"] as! NSString).floatValue)
+//          p = Double((prices["value"] as! NSString).floatValue)
         }
         
-        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        if let responseJSON = responseJSON as? [String: Any] {
-          oauthToken = responseJSON["access_token"] as? String
+//        var fPercentage: Double
+//        var fScore: Int
+        
+        //      if let sellerDetails = (item["seller"] as? [String : Any]) {
+        //        fPercentage=sellerDetails["feedbackPercentage"] as! Double
+        //        fScore=sellerDetails["feedbackScore"] as! Int
+        //        product.seller = sellerDetails["username"] as! String
+        //      }
+        //
+              if let sellerDetails = (item["seller"] as? [String : Any]) {
+//                fPercentage=sellerDetails["feedbackPercentage"] as! Double
+//                fScore=sellerDetails["feedbackScore"] as! Int
+                product.seller = sellerDetails["username"] as! String
+              }
+        
+        if let image = (item["image"] as? [String : Any]) {
+          product.imageURL = URL(string: image["imageUrl"] as! String)!
         }
-        oauthSem.signal()
-      })
-      oauthTask.resume()
-      oauthSem.wait()
+        print(product.title)
+        print(product.price)
+        print(product.seller)
+        print(product.imageURL)
+        
+//
+//        // HTTP Requests
+//        let oauthSession = URLSession.shared
+//
+//        // generate OAuth Application token
+//        var oauthToken: String? = nil
+//
+//        var oauthRequest = URLRequest(url: URL(string: "https://api.ebay.com/identity/v1/oauth2/token")!)
+//        oauthRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content_Type")
+//        oauthRequest.addValue("Basic QXJ5YW5Bcm8tRWFzeUJheS1QUkQtNjE2ZGU1NmRjLTNkZWYzNzZkOlBSRC0xNmRlNTZkY2FkYTgtOTVhZi00YzJlLWFlN2QtYzFlMw==", forHTTPHeaderField: "Authorization")
+//
+//        let scope = "https://api.ebay.com/oauth/api_scope"
+//        let encodedURL = scope.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+//        oauthRequest.httpBody = "grant_type=client_credentials&scope=\(encodedURL!)".data(using: .utf8)
+//        oauthRequest.httpMethod = "POST"
+//
+////        let activityIndicator = UIActivityIndicatorView(style: .gray)
+////        self.view.addSubview(activityIndicator)
+////        activityIndicator.frame = self.view.bounds
+////        activityIndicator.startAnimating()
+//
+//        let oauthSem = DispatchSemaphore(value: 0)
+//        let oauthTask = oauthSession.dataTask(with: oauthRequest, completionHandler: {data, response, error in
+//          guard let data = data, error == nil else {
+//            print(error?.localizedDescription ?? "No  data")
+//            return
+//          }
+//
+//          let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//          if let responseJSON = responseJSON as? [String: Any] {
+//            oauthToken = responseJSON["access_token"] as? String
+//          }
+//          oauthSem.signal()
+//        })
+//        oauthTask.resume()
+//        oauthSem.wait()
       
       //let maxAmt = budgetTextField.text!
       
@@ -127,10 +129,12 @@ class SearchImageViewController: UIViewController {
 //      })
 //      task.resume()
 //      sem.wait()
-      activityIndicator.stopAnimating()
+//      activityIndicator.stopAnimating()
 //
       results.append(product)
+//    }
     }
+  }
   }
   
   
