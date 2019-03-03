@@ -68,12 +68,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
       oauthSem.wait()
       
       let session = URLSession.shared
-      var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=5")!)
+      var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=20")!)
       request.httpMethod = "POST"
       
       // convert image to base64
       let imageData = UIImage.jpegData(image!)
-      let strBase64 = imageData(0.8)?.base64EncodedString(options: .lineLength64Characters)
+      let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
       let params = ["image":  strBase64!] as Dictionary<String, String>
       
       request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])

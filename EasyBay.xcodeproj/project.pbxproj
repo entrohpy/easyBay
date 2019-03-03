@@ -18,6 +18,7 @@
 		E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */; };
 		E35CEFFD222B0F6600F81FB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E35CEFFC222B0F6500F81FB3 /* README.md */; };
 		E3DBCFDE222B570100B23408 /* ProductCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DBCFDD222B570100B23408 /* ProductCells.swift */; };
+		E3DBCFE0222B786A00B23408 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DBCFDF222B786A00B23408 /* ProductCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageViewController.swift; sourceTree = "<group>"; };
 		E35CEFFC222B0F6500F81FB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E3DBCFDD222B570100B23408 /* ProductCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCells.swift; sourceTree = "<group>"; };
+		E3DBCFDF222B786A00B23408 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				E35CEFC3222A958B00F81FB3 /* AppDelegate.swift */,
 				E35CEFC5222A958B00F81FB3 /* ViewController.swift */,
 				E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */,
+				E3DBCFDF222B786A00B23408 /* ProductCollectionViewCell.swift */,
 				E3DBCFDD222B570100B23408 /* ProductCells.swift */,
 				E35CEFC7222A958B00F81FB3 /* Main.storyboard */,
 				E35CEFCD222A958D00F81FB3 /* Assets.xcassets */,
@@ -273,6 +276,7 @@
 				E35CEFC4222A958B00F81FB3 /* AppDelegate.swift in Sources */,
 				E3DBCFDE222B570100B23408 /* ProductCells.swift in Sources */,
 				E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */,
+				E3DBCFE0222B786A00B23408 /* ProductCollectionViewCell.swift in Sources */,
 				E35CEFCC222A958B00F81FB3 /* EasyBay.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
