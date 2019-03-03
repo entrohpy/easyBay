@@ -155,6 +155,13 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjx-lD-FKf">
+                                                    <rect key="frame" x="6.0000000000000764" y="147" width="0.0" height="0.0"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.047706753768529175" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <size key="customSize" width="368" height="188"/>
@@ -164,6 +171,7 @@
                                             <outlet property="productTitle" destination="d1r-of-Na0" id="AJZ-e9-EUS"/>
                                             <outlet property="recommended" destination="Nhx-KZ-2WY" id="BfM-VO-DD0"/>
                                             <outlet property="sellerName" destination="zCy-0L-jUF" id="Xz4-e3-EL1"/>
+                                            <outlet property="suspicionLabel" destination="Jjx-lD-FKf" id="ZLD-Df-OvL"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
