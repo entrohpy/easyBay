@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreML;
 
 class SearchImageViewController: UIViewController {
 
