@@ -262,7 +262,7 @@
                         <outlet property="budgetTextField" destination="uhW-rd-Mfe" id="M3j-Ox-Vha"/>
                         <outlet property="pincodeTextField" destination="Wz9-BF-xgm" id="DVc-bt-XSf"/>
                         <outlet property="usedPickerView" destination="dXu-Jo-S5c" id="q8W-ag-Gkk"/>
-                        <segue destination="qIl-te-goh" kind="show" identifier="segue Search Results" id="iWf-Q5-VvL"/>
+                        <segue destination="qIl-te-goh" kind="show" identifier="segueSearchResults" id="iWf-Q5-VvL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUr-Wt-GUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
