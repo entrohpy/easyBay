@@ -204,7 +204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I live near" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNV-fz-zoZ">
-                                <rect key="frame" x="151" y="338" width="73" height="21"/>
+                                <rect key="frame" x="151" y="348" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -215,18 +215,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jkjk" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-BF-xgm">
-                                <rect key="frame" x="16" y="363" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-BF-xgm">
+                                <rect key="frame" x="16" y="373" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXu-Jo-S5c">
-                                <rect key="frame" x="0.0" y="260" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="260" width="375" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="GHD-mX-5P8"/>
+                                    <constraint firstAttribute="height" constant="70" id="GHD-mX-5P8"/>
                                 </constraints>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCO-kH-O3a">
+                                <rect key="frame" x="132" y="419" width="111" height="30"/>
+                                <state key="normal" title="Search on eBay!"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="B9e-al-V4Y" eventType="touchUpInside" id="J0Q-gW-FRS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -234,7 +241,8 @@
                             <constraint firstItem="Wz9-BF-xgm" firstAttribute="top" secondItem="mNV-fz-zoZ" secondAttribute="bottom" constant="4" id="4er-NZ-jGc"/>
                             <constraint firstItem="h2r-zD-QRh" firstAttribute="trailing" secondItem="uhW-rd-Mfe" secondAttribute="trailing" constant="16" id="7bW-Cp-5sg"/>
                             <constraint firstItem="dXu-Jo-S5c" firstAttribute="centerX" secondItem="yR6-fs-oYf" secondAttribute="centerX" id="9HX-kF-sQ1"/>
-                            <constraint firstItem="mNV-fz-zoZ" firstAttribute="top" secondItem="dXu-Jo-S5c" secondAttribute="bottom" constant="30" id="9vP-Cq-grr"/>
+                            <constraint firstItem="BCO-kH-O3a" firstAttribute="top" secondItem="Wz9-BF-xgm" secondAttribute="bottom" constant="16" id="9Mb-hB-EIu"/>
+                            <constraint firstItem="mNV-fz-zoZ" firstAttribute="top" secondItem="dXu-Jo-S5c" secondAttribute="bottom" constant="18" id="9vP-Cq-grr"/>
                             <constraint firstItem="Ez3-mZ-jZe" firstAttribute="top" secondItem="uhW-rd-Mfe" secondAttribute="bottom" constant="30" id="F3m-KP-RWI"/>
                             <constraint firstItem="Wz9-BF-xgm" firstAttribute="leading" secondItem="h2r-zD-QRh" secondAttribute="leading" constant="16" id="GPn-H6-5vD"/>
                             <constraint firstItem="o42-cz-aQt" firstAttribute="top" secondItem="h2r-zD-QRh" secondAttribute="top" constant="30" id="TPS-Kh-G28"/>
@@ -243,6 +251,7 @@
                             <constraint firstItem="uhW-rd-Mfe" firstAttribute="top" secondItem="o42-cz-aQt" secondAttribute="bottom" constant="4" id="fF1-Ia-yfg"/>
                             <constraint firstItem="o42-cz-aQt" firstAttribute="centerX" secondItem="yR6-fs-oYf" secondAttribute="centerX" id="kCk-4O-PmO"/>
                             <constraint firstItem="dXu-Jo-S5c" firstAttribute="leading" secondItem="h2r-zD-QRh" secondAttribute="leading" id="lPl-gR-Bal"/>
+                            <constraint firstItem="BCO-kH-O3a" firstAttribute="centerX" secondItem="yR6-fs-oYf" secondAttribute="centerX" id="lrG-bT-zd8"/>
                             <constraint firstItem="Ez3-mZ-jZe" firstAttribute="centerX" secondItem="yR6-fs-oYf" secondAttribute="centerX" id="nRv-Wl-Rxx"/>
                             <constraint firstItem="dXu-Jo-S5c" firstAttribute="top" secondItem="Ez3-mZ-jZe" secondAttribute="bottom" constant="8" symbolic="YES" id="yxa-bF-CI8"/>
                             <constraint firstItem="uhW-rd-Mfe" firstAttribute="leading" secondItem="h2r-zD-QRh" secondAttribute="leading" constant="16" id="zri-W8-zKT"/>
@@ -250,9 +259,9 @@
                         <viewLayoutGuide key="safeArea" id="h2r-zD-QRh"/>
                     </view>
                     <connections>
-                        <outlet property="budgetLabel" destination="uhW-rd-Mfe" id="k5A-78-Ahg"/>
+                        <outlet property="budgetTextField" destination="uhW-rd-Mfe" id="M3j-Ox-Vha"/>
                         <outlet property="pincodeTextField" destination="Wz9-BF-xgm" id="DVc-bt-XSf"/>
-                        <outlet property="usedLabel" destination="dXu-Jo-S5c" id="Kdv-IX-LkB"/>
+                        <outlet property="usedPickerView" destination="dXu-Jo-S5c" id="q8W-ag-Gkk"/>
                         <segue destination="qIl-te-goh" kind="show" identifier="segue Search Results" id="iWf-Q5-VvL"/>
                     </connections>
                 </viewController>

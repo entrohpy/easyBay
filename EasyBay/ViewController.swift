@@ -35,8 +35,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let destVC = segue.destination as! SearchImageViewController
-    destVC.responseJSON = self.responseJSON!
+    let destVC = segue.destination as! InputParamsViewController
+    destVC.image = image!
   }
   
   override func viewDidLoad() {

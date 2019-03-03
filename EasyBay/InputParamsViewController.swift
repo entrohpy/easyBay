@@ -2,6 +2,7 @@ import UIKit
 
 class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
+  var vSpinner : UIView?
 
   @IBOutlet weak var budgetTextField: UITextField!
   @IBOutlet weak var usedPickerView: UIPickerView!
@@ -9,18 +10,13 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   
   let pickerData = ["New", "Old"]
   
-  var image: UIImage
+  var image = UIImage()
+  var responseJSON: Dictionary<String, Any> = [:]
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    budgetTextField.placeholder = "Maximum amount you want to spend"
-    // Connect data:
-    self.usedPickerView.delegate = self
-    self.usedPickerView.dataSource = self
+  
+  @IBAction func searchButton(_ sender: Any) {
     
     // HTTP Requests
-    
     let oauthSession = URLSession.shared
     
     // generate OAuth Application token
@@ -38,7 +34,7 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     let activityIndicator = UIActivityIndicatorView(style: .gray)
     self.view.addSubview(activityIndicator)
     activityIndicator.frame = self.view.bounds
-    //      activityIndicator.startAnimating()
+    activityIndicator.startAnimating()
     
     let oauthSem = DispatchSemaphore(value: 0)
     let oauthTask = oauthSession.dataTask(with: oauthRequest, completionHandler: {data, response, error in
@@ -56,12 +52,15 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     oauthTask.resume()
     oauthSem.wait()
     
+    let maxAmt = budgetTextField.text!
+    
+    
     let session = URLSession.shared
-    var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=20")!)
+    var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=20&filter=price:[..\(maxAmt)],priceCurrency:USD,conditions:{NEW}")!)
     request.httpMethod = "POST"
     
     // convert image to base64
-    let imageData = UIImage.jpegData(image!)
+    let imageData = UIImage.jpegData(image)
     let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
     let params = ["image":  strBase64!] as Dictionary<String, String>
     
@@ -72,7 +71,6 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     let sem = DispatchSemaphore(value: 0)
     let task = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
-      
       guard let data = data, error == nil else {
         print(error?.localizedDescription ?? "No data")
         return
@@ -80,13 +78,29 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
       let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
       if let responseJSON = responseJSON as? [String: Any] {
         print(responseJSON)
-        
+        self.responseJSON = responseJSON
       }
       sem.signal()
     })
     task.resume()
     sem.wait()
+    activityIndicator.stopAnimating()
+  }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    budgetTextField.placeholder = "Maximum amount you want to spend"
+    pincodeTextField.placeholder = "90024"
+    // Connect data:
+    self.usedPickerView.delegate = self
+    self.usedPickerView.dataSource = self
+  
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let destVC = segue.destination as! SearchImageViewController
+    destVC.responseJSON = responseJSON
   }
 
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -99,10 +113,10 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   
   // Capture the picker view selection
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    print(component)
+    print(row)
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return pickerData[component]
+    return pickerData[row]
   }
 }
