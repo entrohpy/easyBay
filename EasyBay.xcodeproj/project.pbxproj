@@ -10,6 +10,9 @@
 		904D0B69222B969700A0969D /* my_model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B68222B969700A0969D /* my_model.mlmodel */; };
 		904D0B6B222B97EB00A0969D /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B6A222B97E000A0969D /* ProductCollectionViewCell.swift */; };
 		904D0B6D222BCA4A00A0969D /* InputParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B6C222BCA4700A0969D /* InputParamsViewController.swift */; };
+		923CE1D9222BCBF200637439 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CE1D7222BCBF200637439 /* LaunchScreenController.swift */; };
+		923CE1DA222BCBF200637439 /* LaunchScreenController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923CE1D8222BCBF200637439 /* LaunchScreenController.storyboard */; };
+		923CE1DE222BD52A00637439 /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CE1DD222BD52A00637439 /* UITools.swift */; };
 		E35CEFC4222A958B00F81FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFC3222A958B00F81FB3 /* AppDelegate.swift */; };
 		E35CEFC6222A958B00F81FB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CEFC5222A958B00F81FB3 /* ViewController.swift */; };
 		E35CEFC9222A958B00F81FB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35CEFC7222A958B00F81FB3 /* Main.storyboard */; };
@@ -44,6 +47,9 @@
 		904D0B68222B969700A0969D /* my_model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = my_model.mlmodel; sourceTree = "<group>"; };
 		904D0B6A222B97E000A0969D /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		904D0B6C222BCA4700A0969D /* InputParamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputParamsViewController.swift; sourceTree = "<group>"; };
+		923CE1D7222BCBF200637439 /* LaunchScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
+		923CE1D8222BCBF200637439 /* LaunchScreenController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreenController.storyboard; sourceTree = "<group>"; };
+		923CE1DD222BD52A00637439 /* UITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITools.swift; sourceTree = "<group>"; };
 		E35CEFC0222A958B00F81FB3 /* EasyBay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyBay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35CEFC3222A958B00F81FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E35CEFC5222A958B00F81FB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,12 +130,15 @@
 				E35CEFC3222A958B00F81FB3 /* AppDelegate.swift */,
 				904D0B6C222BCA4700A0969D /* InputParamsViewController.swift */,
 				E35CEFC5222A958B00F81FB3 /* ViewController.swift */,
+				923CE1D8222BCBF200637439 /* LaunchScreenController.storyboard */,
+				E35CEFCF222A958D00F81FB3 /* LaunchScreen.storyboard */,
+				923CE1D7222BCBF200637439 /* LaunchScreenController.swift */,
+				923CE1DD222BD52A00637439 /* UITools.swift */,
 				E35CEFFA222B071400F81FB3 /* SearchImageViewController.swift */,
 				E3DBCFDD222B570100B23408 /* ProductCells.swift */,
 				904D0B6A222B97E000A0969D /* ProductCollectionViewCell.swift */,
 				E35CEFC7222A958B00F81FB3 /* Main.storyboard */,
 				E35CEFCD222A958D00F81FB3 /* Assets.xcassets */,
-				E35CEFCF222A958D00F81FB3 /* LaunchScreen.storyboard */,
 				E35CEFD2222A958D00F81FB3 /* Info.plist */,
 				E35CEFCA222A958B00F81FB3 /* EasyBay.xcdatamodeld */,
 			);
@@ -261,6 +270,7 @@
 				E35CEFD1222A958D00F81FB3 /* LaunchScreen.storyboard in Resources */,
 				E35CEFCE222A958D00F81FB3 /* Assets.xcassets in Resources */,
 				E35CEFFD222B0F6600F81FB3 /* README.md in Resources */,
+				923CE1DA222BCBF200637439 /* LaunchScreenController.storyboard in Resources */,
 				E35CEFC9222A958B00F81FB3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,11 +298,13 @@
 			files = (
 				E35CEFC6222A958B00F81FB3 /* ViewController.swift in Sources */,
 				E35CEFC4222A958B00F81FB3 /* AppDelegate.swift in Sources */,
+				923CE1D9222BCBF200637439 /* LaunchScreenController.swift in Sources */,
 				904D0B6B222B97EB00A0969D /* ProductCollectionViewCell.swift in Sources */,
 				904D0B69222B969700A0969D /* my_model.mlmodel in Sources */,
 				E3DBCFDE222B570100B23408 /* ProductCells.swift in Sources */,
 				904D0B6D222BCA4A00A0969D /* InputParamsViewController.swift in Sources */,
 				E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */,
+				923CE1DE222BD52A00637439 /* UITools.swift in Sources */,
 				E35CEFCC222A958B00F81FB3 /* EasyBay.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,13 +482,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 238WR83KYZ;
+				DEVELOPMENT_TEAM = JZGGT99U9P;
 				INFOPLIST_FILE = EasyBay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snore.EasyBay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryanarora.EasyBay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -490,13 +502,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 238WR83KYZ;
+				DEVELOPMENT_TEAM = JZGGT99U9P;
 				INFOPLIST_FILE = EasyBay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snore.EasyBay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryanarora.EasyBay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
