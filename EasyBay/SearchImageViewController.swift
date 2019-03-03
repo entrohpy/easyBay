@@ -10,6 +10,7 @@ import UIKit
 import CoreML;
 
 class SearchImageViewController: UIViewController {
+    let model = my_model()
 
   var responseJSON: Dictionary<String, Any> = [:]
   
@@ -24,29 +25,71 @@ class SearchImageViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let x:Bool=checkIfScam();
+    print(x)
+    
     for item in (responseJSON["itemSummaries"] as! [[String: Any]])  {
       let product = ProductCells()
+        var id : String
+        var p: Double
       product.title = item["title"] as! String
-      
+      id = item["itemId"] as! String
       if let prices = (item["price"] as? [String : Any]) {
         product.price = Double((prices["value"] as! NSString).floatValue)
+        p = Double((prices["value"] as! NSString).floatValue)
       }
       
-      if let sellerDetails = (item["seller"] as? [String : Any]) {
+        var fPercentage: Double
+        var fScore: Int
+        
+    if let sellerDetails = (item["seller"] as? [String : Any]) {
+        fPercentage=sellerDetails["feedbackPercentage"] as! Double
+        fScore=sellerDetails["feedbackScore"] as! Int
         product.seller = sellerDetails["username"] as! String
-      }
-    
+    }
+        
+        if let sellerDetails = (item["seller"] as? [String : Any]) {
+            fPercentage=sellerDetails["feedbackPercentage"] as! Double
+            fScore=sellerDetails["feedbackScore"] as! Int
+            product.seller = sellerDetails["username"] as! String
+        }
+        
       if let image = (item["image"] as? [String : Any]) {
         product.imageURL = URL(string: image["imageUrl"] as! String)!
       }
-      print(product.title)
-      print(product.price)
-      print(product.seller)
-      print(product.imageURL)
+//      print(product.title)
+//      print(product.price)
+//      print(product.seller)
+//      print(product.imageURL)
+        
+        
       
       results.append(product)
     }
   }
+    
+    
+    func checkIfScam() -> Bool {
+        
+        guard let mlMultiArray = try? MLMultiArray(shape:[7], dataType:MLMultiArrayDataType.double) else {
+            fatalError("Unexpected runtime error. MLMultiArray")
+        }
+        
+        for i in 1...7
+        {
+           mlMultiArray[i] = i as NSNumber
+        }
+        
+        guard let my_modelOutput = try? model.prediction(input1 : mlMultiArray ) else {
+            fatalError("Unexpected runtime error.")
+        }
+        
+        let probLegit = my_modelOutput.output1[0] as! Double
+        let probScam = my_modelOutput.output1[1] as! Double
+        print(probLegit)
+        print(probScam)
+        return (probScam>probLegit)
+    }
 
 }
 
@@ -89,4 +132,6 @@ extension UIImageView {
     }
   }
 }
+
+
 
