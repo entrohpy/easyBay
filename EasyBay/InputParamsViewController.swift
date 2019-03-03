@@ -91,8 +91,8 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    budgetTextField.placeholder = "Maximum amount you want to spend"
-    pincodeTextField.placeholder = "90024"
+    budgetTextField.placeholder = ""
+    pincodeTextField.placeholder = ""
     // Connect data:
     self.usedPickerView.delegate = self
     self.usedPickerView.dataSource = self
