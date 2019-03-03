@@ -203,8 +203,8 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    budgetTextField.placeholder = "Maximum amount you want to spend"
-    pincodeTextField.placeholder = "90024"
+    budgetTextField.placeholder = ""
+    pincodeTextField.placeholder = ""
     // Connect data:
     self.usedPickerView.delegate = self
     self.usedPickerView.dataSource = self
@@ -233,4 +233,10 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return pickerData[row]
   }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleData = pickerData[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedString.Key.font:UIFont(name: "Avenir Next", size: 15.0)!,NSAttributedString.Key.foregroundColor:UIColor.white])
+        return myTitle
+    }
 }
