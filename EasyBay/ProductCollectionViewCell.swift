@@ -27,4 +27,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
   func setPrice(price: Double) {
     priceLabel.text = "Price: $" + (String(format: "%.2f", price) as String)
   }
+  
+  
 }

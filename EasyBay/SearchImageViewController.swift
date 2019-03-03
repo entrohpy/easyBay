@@ -18,7 +18,6 @@ class SearchImageViewController: UIViewController {
   private let reuseIdentifier = "ProductCell"
   var results: [ProductCells] = []
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -31,6 +30,7 @@ class SearchImageViewController: UIViewController {
 //        var id : String
 //        var p: Double
         product.title = item["title"] as! String
+        product.url = URL(string: item["itemWebUrl"] as! String)!
 //        id = item["itemId"] as! String
         if let prices = (item["price"] as? [String : Any]) {
           product.price = Double((prices["value"] as! NSString).floatValue)
@@ -55,10 +55,10 @@ class SearchImageViewController: UIViewController {
         if let image = (item["image"] as? [String : Any]) {
           product.imageURL = URL(string: image["imageUrl"] as! String)!
         }
-        print(product.title)
-        print(product.price)
-        print(product.seller)
-        print(product.imageURL)
+//        print(product.title)
+//        print(product.price)
+//        print(product.seller)
+//        print(product.imageURL)
         
 //
 //        // HTTP Requests
@@ -163,6 +163,15 @@ class SearchImageViewController: UIViewController {
 }
 
 extension SearchImageViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let url = results[indexPath.item].url
+    print(url)
+    if UIApplication.shared.canOpenURL(url) {
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+  }
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return results.count
   }
@@ -172,7 +181,7 @@ extension SearchImageViewController : UICollectionViewDataSource, UICollectionVi
     
     cell.productImageView.load(url: results[indexPath.item].imageURL)
     cell.productTitle.text = results[indexPath.item].title
-    cell.sellerName.text = results[indexPath.item].seller
+    cell.sellerName.text = "sold by: " + results[indexPath.item].seller
     cell.setPrice(price: results[indexPath.item].price)
     if (indexPath.item < 2) {
       cell.setRecommmended()
