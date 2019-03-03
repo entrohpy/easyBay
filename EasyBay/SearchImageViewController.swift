@@ -18,7 +18,7 @@ class SearchImageViewController: UIViewController {
                                            left: 20.0,
                                            bottom: 50.0,
                                            right: 20.0)
-  let results: [ProductCells] = []
+  var results: [ProductCells] = []
   
   
   override func viewDidLoad() {
@@ -43,14 +43,50 @@ class SearchImageViewController: UIViewController {
       print(product.price)
       print(product.seller)
       print(product.imageURL)
+      
+      results.append(product)
     }
   }
 
 }
 
-
-private extension SearchImageViewController {
-  func photo(for indexPath: IndexPath) -> ProductCells {
-    return results[indexPath.section]
+extension SearchImageViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return results.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
+    
+    cell.productImageView.load(url: results[indexPath.item].imageURL)
+    cell.productTitle.text = results[indexPath.item].title
+    cell.sellerName.text = results[indexPath.item].seller
+    cell.setPrice(price: results[indexPath.item].price)
+    if (indexPath.item < 2) {
+      cell.setRecommmended()
+    } else {
+      cell.setNotRecommended()
+    }
+    
+    return cell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print(results[indexPath.item].title)
   }
 }
+
+extension UIImageView {
+  func load(url: URL) {
+    DispatchQueue.global().async { [weak self] in
+      if let data = try? Data(contentsOf: url) {
+        if let image = UIImage(data: data) {
+          DispatchQueue.main.async {
+            self?.image = image
+          }
+        }
+      }
+    }
+  }
+}
+
