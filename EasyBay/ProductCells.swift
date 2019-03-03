@@ -14,11 +14,13 @@ class ProductCells {
   var seller: String
   var suspicion: Bool
   var title: String
+  var url: URL
   init() {
     imageURL = URL(string: "https://www.ebay.com")!
     price = 0.0
     seller = ""
     suspicion = false
     title = ""
+    url = URL(string: "https://www.ebay.com")!
   }
 }

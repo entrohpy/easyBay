@@ -7,8 +7,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
   var image: UIImage?
   var responseJSON: Dictionary<String, Any>?
-
-
+  
   @IBAction func tappedCameraButton(_ sender: Any) {
 
     if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -19,9 +18,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
   }
   
+  
+  @IBAction func tappedUploadButton(_ sender: Any) {
+    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+      cameraVC =  UIImagePickerController()
+      cameraVC.delegate = self
+      cameraVC.sourceType = .photoLibrary
+      present(cameraVC, animated: true, completion: nil)
+    }
+  }
+  
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-    cameraVC.dismiss(animated: true, completion: nil);
+    dismiss(animated: true, completion: nil);
 
     guard let selectedImage = info[.originalImage] as? UIImage else {
       print("Image not found!")
@@ -29,18 +38,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     image = selectedImage
     if let _ = image {
-
       performSegue(withIdentifier: "segueInputParams", sender: self)
     }
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let destVC = segue.destination as! InputParamsViewController
-    destVC.image = image!
+    destVC.image = UIImage(data: image!.jpegData(compressionQuality: 0.1)!)!
+//    print (destVC.image!)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
   }
 }

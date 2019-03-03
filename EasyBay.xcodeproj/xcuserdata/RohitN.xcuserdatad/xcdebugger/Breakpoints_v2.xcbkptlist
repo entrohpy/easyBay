@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EasyBay/SearchImageViewController.swift"
-            timestampString = "573299339.044863"
+            filePath = "EasyBay/InputParamsViewController.swift"
+            timestampString = "573333940.600055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "searchButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

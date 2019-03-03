@@ -16,6 +16,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var recommended: UILabel!
   @IBOutlet weak var priceLabel: UILabel!
   
+  @IBOutlet weak var suspicionLabel: UILabel!
+  
   func setRecommmended() {
     recommended.text = "RECOMMENDED"
   }
@@ -27,4 +29,13 @@ class ProductCollectionViewCell: UICollectionViewCell {
   func setPrice(price: Double) {
     priceLabel.text = "Price: $" + (String(format: "%.2f", price) as String)
   }
+  
+  func addSuspicion() {
+    suspicionLabel.text = "SUSPICIOUS!!"
+  }
+  
+  func noSuspicion() {
+    suspicionLabel.text = ""
+  }
+  
 }
