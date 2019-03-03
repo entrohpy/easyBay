@@ -12,7 +12,7 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   
   var image = UIImage()
   var responseJSON: Dictionary<String, Any> = [:]
-  
+    
   
   @IBAction func searchButton(_ sender: Any) {
     
@@ -120,4 +120,10 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return pickerData[row]
   }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleData = pickerData[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedString.Key.font:UIFont(name: "Avenir Next", size: 15.0)!,NSAttributedString.Key.foregroundColor:UIColor.white])
+        return myTitle
+    }
 }

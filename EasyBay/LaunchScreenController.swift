@@ -44,7 +44,7 @@ class LaunchScreenController : UIViewController {
             
             
         }) {(success) in
-            Thread.sleep(forTimeInterval:10 )
+            Thread.sleep(forTimeInterval:2 )
             let sb = UIStoryboard(name: "Main" , bundle: nil)
             let vc = sb.instantiateInitialViewController()
             UIApplication.shared.keyWindow?.rootViewController = vc
