@@ -169,7 +169,7 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
       }
       let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
       if let responseJSON = responseJSON as? [String: Any] {
-        //print(responseJSON)
+        print(responseJSON)
         resJSON = responseJSON
         oauthSem.signal()
       }
@@ -307,7 +307,6 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let destVC = segue.destination as! SearchImageViewController
-    destVC.responseJSON = self.responseJSON
     destVC.imageJSONs = self.imageJSONs
   }
   

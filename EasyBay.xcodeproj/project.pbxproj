@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		904D0B69222B969700A0969D /* my_model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B68222B969700A0969D /* my_model.mlmodel */; };
 		904D0B6B222B97EB00A0969D /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B6A222B97E000A0969D /* ProductCollectionViewCell.swift */; };
 		904D0B6D222BCA4A00A0969D /* InputParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D0B6C222BCA4700A0969D /* InputParamsViewController.swift */; };
 		923CE1D9222BCBF200637439 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CE1D7222BCBF200637439 /* LaunchScreenController.swift */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		904D0B68222B969700A0969D /* my_model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = my_model.mlmodel; sourceTree = "<group>"; };
 		904D0B6A222B97E000A0969D /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		904D0B6C222BCA4700A0969D /* InputParamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputParamsViewController.swift; sourceTree = "<group>"; };
 		923CE1D7222BCBF200637439 /* LaunchScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 		904D0B67222B95E900A0969D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				904D0B68222B969700A0969D /* my_model.mlmodel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -300,7 +297,6 @@
 				E35CEFC4222A958B00F81FB3 /* AppDelegate.swift in Sources */,
 				923CE1D9222BCBF200637439 /* LaunchScreenController.swift in Sources */,
 				904D0B6B222B97EB00A0969D /* ProductCollectionViewCell.swift in Sources */,
-				904D0B69222B969700A0969D /* my_model.mlmodel in Sources */,
 				E3DBCFDE222B570100B23408 /* ProductCells.swift in Sources */,
 				904D0B6D222BCA4A00A0969D /* InputParamsViewController.swift in Sources */,
 				E35CEFFB222B071400F81FB3 /* SearchImageViewController.swift in Sources */,

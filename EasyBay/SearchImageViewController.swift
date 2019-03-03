@@ -11,10 +11,9 @@ import CoreML
 
 class SearchImageViewController: UIViewController {
   
-  let model = my_model()
+//  let model = my_model()
   
   var imageJSONs: [Dictionary<String, Any>] = []
-  var responseJSON: Dictionary<String, Any> = [:]
   
   private let reuseIdentifier = "ProductCell"
   var results: [ProductCells] = []
@@ -22,261 +21,263 @@ class SearchImageViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
-    for item in (responseJSON["itemSummaries"] as! [[String: Any]])  {
-      let product = ProductCells()
-      var id : String
-      var p: Double = 0.0
+    for json in imageJSONs {
+      for item in (json["itemSummaries"] as! [[String: Any]])  {
+        let product = ProductCells()
+        var id : String
+        var p: Double = 0.0
         var tempSum: Double = 0.0
         var tempCount: Double = 0.0
         var top: Double = 0.0
-      product.title = item["title"] as! String
-      product.url = URL(string: item["itemWebUrl"] as! String)!
-      id = item["itemId"] as! String
-      if let prices = (item["price"] as? [String : Any]) {
-        product.price = Double((prices["value"] as! NSString).floatValue)
-        p = Double((prices["value"] as! NSString).floatValue)
-      }
-      
-      var fPercentage: Double = 0.0
-      var fScore: Int = 0
-        var slr: String = "dirbot"
-        var paypal: Double = 0
-      if let sellerDetails = (item["seller"] as? [String : Any]) {
-        fPercentage = Double((sellerDetails["feedbackPercentage"] as! NSString).floatValue)
-        fScore = Int(sellerDetails["feedbackScore"] as! NSNumber)
-        product.seller = sellerDetails["username"] as! String
-        slr = sellerDetails["username"] as! String
-      }
-      
-      
-      
-      if let image = (item["image"] as? [String : Any]) {
-        product.imageURL = URL(string: image["imageUrl"] as! String)!
-      }
-//            print(product.title)
-//            print(product.price)
-//            print(product.seller)
-//            print(product.imageURL)
-      
-//      let activityIndicator = UIActivityIndicatorView(style: .gray)
-//      self.view.addSubview(activityIndicator)
-//      activityIndicator.frame = self.view.bounds
-//      activityIndicator.startAnimating()
-      
-      
-      let session = URLSession.shared
-      var request = URLRequest(url: URL(string: "https://svcs.ebay.com/services/search/FindingService/v1?limit=20")!)
-      request.httpMethod = "POST"
-
-//      // convert image to base64
-//      //        let imageData = UIImage.jpegData(image)
-//      //        let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
-//      //        let params = ["image":  strBase64!] as Dictionary<String, String>
-//
-        func xmlString() -> String {
-            var xml = "<?xml version=\"1.0\"?>"
-            xml += "<findItemsAdvancedRequest xmlns=\"http://www.ebay.com/marketplace/search/v1/services\">"
-            xml += "<itemFilter>"
-            xml += "<name>"
-            xml += "Seller"
-            xml += "</name>"
-            xml += "<value>"
-            xml += slr
-            xml += "</value>"
-            xml += "</itemFilter>"
-            xml += "<itemFilter>"
-            xml += "<name>PaymentMethod</name>"
-            xml += "<value>PayPal</value>"
-            xml += "</itemFilter>"
-            xml += "<paginationInput>"
-            xml += "<entriesPerPage>10</entriesPerPage>"
-            xml += "<pageNumber>1</pageNumber>"
-            xml += "</paginationInput>"
-            xml += "<outputSelector>SellerInfo</outputSelector>"
-            xml += "</findItemsAdvancedRequest>"
-            
-            return xml
+        product.title = item["title"] as! String
+        product.url = URL(string: item["itemWebUrl"] as! String)!
+        id = item["itemId"] as! String
+        if let prices = (item["price"] as? [String : Any]) {
+          product.price = Double((prices["value"] as! NSString).floatValue)
+          p = Double((prices["value"] as! NSString).floatValue)
         }
         
-      
-        request.httpBody = xmlString().data(using: .utf8)
-      request.addValue("AryanAro-EasyBay-PRD-616de56dc-3def376d", forHTTPHeaderField: "X-EBAY-SOA-SECURITY-APPNAME")
-      request.addValue("findItemsAdvanced", forHTTPHeaderField: "X-EBAY-SOA-OPERATION-NAME")
-      request.addValue("json", forHTTPHeaderField: "X-EBAY-SOA-RESPONSE-DATA-FORMAT")
-
-      let sem = DispatchSemaphore(value: 0)
-      let task = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
-        guard let data = data, error == nil else {
-          print(error?.localizedDescription ?? "No data")
-          return
+        var fPercentage: Double = 0.0
+        var fScore: Int = 0
+        var slr: String = "dirbot"
+        var paypal: Double = 0
+        if let sellerDetails = (item["seller"] as? [String : Any]) {
+          fPercentage = Double((sellerDetails["feedbackPercentage"] as! NSString).floatValue)
+          fScore = Int(sellerDetails["feedbackScore"] as! NSNumber)
+          product.seller = sellerDetails["username"] as! String
+          slr = sellerDetails["username"] as! String
         }
-        let response1JSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        if let response1JSON = response1JSON as? [String: Any] {
-          print(response1JSON)
-        for items in response1JSON["findItemsAdvancedResponse"] as! [[String: Any]]{
-                for res in items["searchResult"] as! [[String : Any]] {
-                    for i in res["item"] as! [[String: Any]] {
-                        for k in i["sellerInfo"] as! [[String: Any]] {
-                            if((k["sellerUserName"]! as! [String])[0]==slr)
-                            {
-                                paypal=1.0
-                                break
-                            }
-                        }
-                    }
-                }
-            }
-            
-            
-            
-            
-//            if let search = (response1JSON["searchResult"] as? [String : Any]){
-//                if let item = (search["item"] as? [String : Any]){
-//                        if let seller = (item["sellerInfo"] as? [String : Any]){
-//                            if let temp = (seller["sellerUserName"] as! String! ){
-//                                if(temp==slr){
-//                                    paypal=true;
+        
+        
+        
+        if let image = (item["image"] as? [String : Any]) {
+          product.imageURL = URL(string: image["imageUrl"] as! String)!
+        }
+        //            print(product.title)
+        //            print(product.price)
+        //            print(product.seller)
+        //            print(product.imageURL)
+        
+        //      let activityIndicator = UIActivityIndicatorView(style: .gray)
+        //      self.view.addSubview(activityIndicator)
+        //      activityIndicator.frame = self.view.bounds
+        //      activityIndicator.startAnimating()
+        
+        
+//              let session = URLSession.shared
+//              var request = URLRequest(url: URL(string: "https://svcs.ebay.com/services/search/FindingService/v1?limit=20")!)
+//              request.httpMethod = "POST"
 //
+//        //      // convert image to base64
+//        //      //        let imageData = UIImage.jpegData(image)
+//        //      //        let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
+//        //      //        let params = ["image":  strBase64!] as Dictionary<String, String>
+//        //
+//                func xmlString() -> String {
+//                    var xml = "<?xml version=\"1.0\"?>"
+//                    xml += "<findItemsAdvancedRequest xmlns=\"http://www.ebay.com/marketplace/search/v1/services\">"
+//                    xml += "<itemFilter>"
+//                    xml += "<name>"
+//                    xml += "Seller"
+//                    xml += "</name>"
+//                    xml += "<value>"
+//                    xml += slr
+//                    xml += "</value>"
+//                    xml += "</itemFilter>"
+//                    xml += "<itemFilter>"
+//                    xml += "<name>PaymentMethod</name>"
+//                    xml += "<value>PayPal</value>"
+//                    xml += "</itemFilter>"
+//                    xml += "<paginationInput>"
+//                    xml += "<entriesPerPage>10</entriesPerPage>"
+//                    xml += "<pageNumber>1</pageNumber>"
+//                    xml += "</paginationInput>"
+//                    xml += "<outputSelector>SellerInfo</outputSelector>"
+//                    xml += "</findItemsAdvancedRequest>"
+//
+//                    return xml
+//                }
+//
+//
+//                request.httpBody = xmlString().data(using: .utf8)
+//              request.addValue("AryanAro-EasyBay-PRD-616de56dc-3def376d", forHTTPHeaderField: "X-EBAY-SOA-SECURITY-APPNAME")
+//              request.addValue("findItemsAdvanced", forHTTPHeaderField: "X-EBAY-SOA-OPERATION-NAME")
+//              request.addValue("json", forHTTPHeaderField: "X-EBAY-SOA-RESPONSE-DATA-FORMAT")
+//
+//              let sem = DispatchSemaphore(value: 0)
+//              let task = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
+//                guard let data = data, error == nil else {
+//                  print(error?.localizedDescription ?? "No data")
+//                  return
+//                }
+//                let response1JSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//                if let response1JSON = response1JSON as? [String: Any] {
+//                  print(response1JSON)
+//                for items in response1JSON["findItemsAdvancedResponse"] as! [[String: Any]]{
+//                        for res in items["searchResult"] as! [[String : Any]] {
+//                            for i in res["item"] as! [[String: Any]] {
+//                                for k in i["sellerInfo"] as! [[String: Any]] {
+//                                    if((k["sellerUserName"]! as! [String])[0]==slr)
+//                                    {
+//                                        paypal=1.0
+//                                        break
+//                                    }
 //                                }
 //                            }
 //                        }
 //                    }
+//
+//
+//
+//
+//        //            if let search = (response1JSON["searchResult"] as? [String : Any]){
+//        //                if let item = (search["item"] as? [String : Any]){
+//        //                        if let seller = (item["sellerInfo"] as? [String : Any]){
+//        //                            if let temp = (seller["sellerUserName"] as! String! ){
+//        //                                if(temp==slr){
+//        //                                    paypal=true;
+//        //
+//        //                                }
+//        //                            }
+//        //                        }
+//        //                    }
+//        //                }
+//                  //self.responseJSON = responseJSON
 //                }
-          //self.responseJSON = responseJSON
-        }
-        sem.signal()
-      })
-      task.resume()
+//                sem.signal()
+//              })
+//              task.resume()
+//
+//
+//                let session1 = URLSession.shared
+//                var request1 = URLRequest(url: URL(string: "https://svcs.ebay.com/services/search/FindingService/v1?limit=20")!)
+//                request1.httpMethod = "POST"
+//
+//                //      // convert image to base64
+//                //      //        let imageData = UIImage.jpegData(image)
+//                //      //        let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
+//                //      //        let params = ["image":  strBase64!] as Dictionary<String, String>
+//                //
+//                func xmlString1() -> String {
+//                    var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+//                    xml += "<findCompletedItemsRequest xmlns=\"http://www.ebay.com/marketplace/search/v1/services\">"
+//                    xml += "<itemFilter>"
+//                    xml += "<name>Seller</name>"
+//                    xml += "<value>"
+//                    xml += slr
+//                    xml += "</value>"
+//                    xml += "</itemFilter>"
+//                    xml += "<itemFilter>"
+//                    xml += "<name>SoldItemsOnly</name>"
+//                    xml += "<value>true</value>"
+//                    xml += "</itemFilter>"
+//                    xml += "<paginationInput>"
+//                    xml += "<entriesPerPage>10</entriesPerPage>"
+//                    xml += "<pageNumber>1</pageNumber>"
+//                    xml += "</paginationInput>"
+//                    xml += "</findCompletedItemsRequest>"
+//
+//
+//                    return xml
+//                }
+//
+//
+//                request1.httpBody = xmlString1().data(using: .utf8)
+//                request1.addValue("AryanAro-EasyBay-PRD-616de56dc-3def376d", forHTTPHeaderField: "X-EBAY-SOA-SECURITY-APPNAME")
+//                request1.addValue("findCompletedItems", forHTTPHeaderField: "X-EBAY-SOA-OPERATION-NAME")
+//                request1.addValue("json", forHTTPHeaderField: "X-EBAY-SOA-RESPONSE-DATA-FORMAT")
+//                request1.addValue("EBAY-US", forHTTPHeaderField: "X-EBAY-SOA-GLOBAL-ID")
+//
+//
+//                let sem1 = DispatchSemaphore(value: 0)
+//                let task1 = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
+//                    guard let data = data, error == nil else {
+//                        print(error?.localizedDescription ?? "No data")
+//                        return
+//                    }
+//                    let response2JSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//                    if let response2JSON = response2JSON as? [String: Any] {
+//                        print(response2JSON)
+//                        print("*********************************************************")
+//                        for items in response2JSON["findItemsAdvancedResponse"] as! [[String: Any]]{
+//                            for res in items["searchResult"] as! [[String : Any]] {
+//                                for i in res["item"] as! [[String: Any]] {
+//                                    for k in i["sellingStatus"] as! [[String: Any]] {
+//                                        for j in k["currentPrice"] as! [[String: Any]] {
+//                                                tempSum += Double((j["__value__"] as! NSString).floatValue)
+//                                                tempCount += 1
+//                                            }
+//
+//                                    }
+////                                    if (i["topRatedListing"] as! Bool == true){
+////                                        top=1.0
+////                                    }
+//
+//
+//                                }
+//                            }
+//                        }
+//
+//
+//
+//
+//                        //            if let search = (response1JSON["searchResult"] as? [String : Any]){
+//                        //                if let item = (search["item"] as? [String : Any]){
+//                        //                        if let seller = (item["sellerInfo"] as? [String : Any]){
+//                        //                            if let temp = (seller["sellerUserName"] as! String! ){
+//                        //                                if(temp==slr){
+//                        //                                    paypal=true;
+//                        //
+//                        //                                }
+//                        //                            }
+//                        //                        }
+//                        //                    }
+//                        //                }
+//                        //self.responseJSON = responseJSON
+//                    }
+//                    sem1.signal()
+//                })
+//                task1.resume()
+//
+//
+//              sem1.wait()
+//              //activityIndicator.stopAnimating()
+//
+//                guard let mlMultiArray = try? MLMultiArray(shape:[6], dataType:MLMultiArrayDataType.double) else {
+//                    fatalError("Unexpected runtime error. MLMultiArray")
+//                }
+//
+//                var movingcost = abs((tempSum/tempCount - p)/p)*100
+//
+//                mlMultiArray[0] = fPercentage as NSNumber
+//                mlMultiArray[1] = fScore as NSNumber
+//                mlMultiArray[2] = paypal as NSNumber
+//                mlMultiArray[3] = movingcost as NSNumber
+//                mlMultiArray[4] = top as NSNumber
+//                mlMultiArray[5] = p as NSNumber
+//
+//                product.suspicion = checkIfScam(mlMultiArray: mlMultiArray)
+//
+              results.append(product)
+        //        print(paypal)
         
-        
-        let session1 = URLSession.shared
-        var request1 = URLRequest(url: URL(string: "https://svcs.ebay.com/services/search/FindingService/v1?limit=20")!)
-        request1.httpMethod = "POST"
-        
-        //      // convert image to base64
-        //      //        let imageData = UIImage.jpegData(image)
-        //      //        let strBase64 = imageData(0.5)?.base64EncodedString(options: .lineLength64Characters)
-        //      //        let params = ["image":  strBase64!] as Dictionary<String, String>
-        //
-        func xmlString1() -> String {
-            var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-            xml += "<findCompletedItemsRequest xmlns=\"http://www.ebay.com/marketplace/search/v1/services\">"
-            xml += "<itemFilter>"
-            xml += "<name>Seller</name>"
-            xml += "<value>"
-            xml += slr
-            xml += "</value>"
-            xml += "</itemFilter>"
-            xml += "<itemFilter>"
-            xml += "<name>SoldItemsOnly</name>"
-            xml += "<value>true</value>"
-            xml += "</itemFilter>"
-            xml += "<paginationInput>"
-            xml += "<entriesPerPage>10</entriesPerPage>"
-            xml += "<pageNumber>1</pageNumber>"
-            xml += "</paginationInput>"
-            xml += "</findCompletedItemsRequest>"
-            
-            
-            return xml
-        }
-        
-        
-        request1.httpBody = xmlString1().data(using: .utf8)
-        request1.addValue("AryanAro-EasyBay-PRD-616de56dc-3def376d", forHTTPHeaderField: "X-EBAY-SOA-SECURITY-APPNAME")
-        request1.addValue("findCompletedItems", forHTTPHeaderField: "X-EBAY-SOA-OPERATION-NAME")
-        request1.addValue("json", forHTTPHeaderField: "X-EBAY-SOA-RESPONSE-DATA-FORMAT")
-        request1.addValue("EBAY-US", forHTTPHeaderField: "X-EBAY-SOA-GLOBAL-ID")
-        
-        
-        let sem1 = DispatchSemaphore(value: 0)
-        let task1 = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let response2JSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let response2JSON = response2JSON as? [String: Any] {
-                print(response2JSON)
-                print("*********************************************************")
-                for items in response2JSON["findItemsAdvancedResponse"] as! [[String: Any]]{
-                    for res in items["searchResult"] as! [[String : Any]] {
-                        for i in res["item"] as! [[String: Any]] {
-                            for k in i["sellingStatus"] as! [[String: Any]] {
-                                for j in k["currentPrice"] as! [[String: Any]] {
-                                        tempSum += Double((j["__value__"] as! NSString).floatValue)
-                                        tempCount += 1
-                                    }
-                               
-                            }
-                            if (i["topRatedListing"] as! Bool == true){
-                                top=1.0
-                            }
-                            
-                        }
-                    }
-                }
-                
-                
-                
-                
-                //            if let search = (response1JSON["searchResult"] as? [String : Any]){
-                //                if let item = (search["item"] as? [String : Any]){
-                //                        if let seller = (item["sellerInfo"] as? [String : Any]){
-                //                            if let temp = (seller["sellerUserName"] as! String! ){
-                //                                if(temp==slr){
-                //                                    paypal=true;
-                //
-                //                                }
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //self.responseJSON = responseJSON
-            }
-            sem1.signal()
-        })
-        task1.resume()
-        
-        
-      sem1.wait()
-      //activityIndicator.stopAnimating()
-
-        guard let mlMultiArray = try? MLMultiArray(shape:[6], dataType:MLMultiArrayDataType.double) else {
-            fatalError("Unexpected runtime error. MLMultiArray")
-        }
-        
-        var movingcost = abs((tempSum/tempCount - p)/p)*100
-        
-        mlMultiArray[0] = fPercentage as NSNumber
-        mlMultiArray[1] = fScore as NSNumber
-        mlMultiArray[2] = paypal as NSNumber
-        mlMultiArray[3] = movingcost as NSNumber
-        mlMultiArray[4] = top as NSNumber
-        mlMultiArray[5] = p as NSNumber
-        
-        product.suspicion = checkIfScam(mlMultiArray: mlMultiArray)
-        
-      results.append(product)
-        print(paypal)
-
+      }
     }
   }
   
-    func checkIfScam(mlMultiArray : MLMultiArray) -> Bool {
-    
-    
-    guard let my_modelOutput = try? model.prediction(input1 : mlMultiArray ) else {
-      fatalError("Unexpected runtime error.")
-    }
-    
-    let probLegit = my_modelOutput.output1[0] as! Double
-    let probScam = my_modelOutput.output1[1] as! Double
-    print(probLegit)
-    print(probScam)
-    return (probScam>probLegit)
-  }
+//  func checkIfScam(mlMultiArray : MLMultiArray) -> Bool {
+//    
+//    
+//    guard let my_modelOutput = try? model.prediction(input1 : mlMultiArray ) else {
+//      fatalError("Unexpected runtime error.")
+//    }
+//    
+//    let probLegit = my_modelOutput.output1[0] as! Double
+//    let probScam = my_modelOutput.output1[1] as! Double
+//    print(probLegit)
+//    print(probScam)
+//    return (probScam>probLegit)
+//  }
 }
 
 
