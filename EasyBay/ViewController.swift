@@ -29,7 +29,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     image = selectedImage
     if let _ = image {
-      
       performSegue(withIdentifier: "segueInputParams", sender: self)
     }
   }

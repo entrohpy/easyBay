@@ -52,11 +52,11 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     oauthTask.resume()
     oauthSem.wait()
     
-    let maxAmt = budgetTextField.text!
+    let maxAmt = budgetTextField.text
     
     
     let session = URLSession.shared
-    var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=20&filter=price:[..\(maxAmt)],priceCurrency:USD,conditions:{NEW}")!)
+    var request = URLRequest(url: URL(string: "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?&limit=20&filter=price:[..1000]")!)
     request.httpMethod = "POST"
     
     // convert image to base64
@@ -85,6 +85,7 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     task.resume()
     sem.wait()
     activityIndicator.stopAnimating()
+    performSegue(withIdentifier: "segueSearchResults", sender: self)
   }
   
   override func viewDidLoad() {
