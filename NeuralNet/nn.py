@@ -1,5 +1,9 @@
 # coding=utf-8
 from __future__ import absolute_import
+# Just disables the warning, doesn't enable AVX/FMA
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 import numpy as np
 import coremltools
 import keras
@@ -8,7 +12,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout, Flatten
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
-from keras.optimizers import Adam
+from keras.optimizers import Adam, SGD
 
 
 def create_mini_batches(X, y, batch_size):
@@ -43,19 +47,23 @@ print(dfOutput)
 #print(x.shape)
 
 
-N=64  #Batch size of 32ß, 50 epochs
-D=7
+N=64  #Batch size of 64, 50 epochs
+D=6
 H=5
 O=2
 
 model=Sequential()
 model.add(Dense(input_dim=D, output_dim=H))
 model.add(Activation('relu'))
-model.add(Dense(input_dim=H, output_dim=O))
+model.add(BatchNormalization())
+model.add(Dense(input_dim=H, output_dim=O, W_regularizer=l2(0.01)))
+model.add(BatchNormalization())
 model.add(Activation('sigmoid'))
 
-optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
-model.compile(loss='binary_crossentropy', optimizer=optimizer)
+
+#optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='binary_crossentropy', optimizer=sgd)
 
 #x=np.random.randn(32,7)
 #y= np.zeros((N, 2))
@@ -69,7 +77,7 @@ x,y = minibatches[0]
 #x= np.random.choice(minix, 1)
 #y= np.random.choice(miniy, 1)
 
-history=model.fit(x,y,nb_epoch=5000, batch_size=N, verbose=2)
+history=model.fit(x,y,nb_epoch=50, batch_size=N, verbose=2)
 
 
 print(history.history)

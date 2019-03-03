@@ -286,6 +286,25 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     
+<<<<<<< HEAD
+=======
+    let sem = DispatchSemaphore(value: 0)
+    let task = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
+      guard let data = data, error == nil else {
+        print(error?.localizedDescription ?? "No data")
+        return
+      }
+      let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+      if let responseJSON = responseJSON as? [String: Any] {
+        //print(responseJSON)
+        self.responseJSON = responseJSON
+      }
+      sem.signal()
+    })
+    task.resume()
+    sem.wait()
+    activityIndicator.stopAnimating()
+>>>>>>> master
     performSegue(withIdentifier: "segueSearchResults", sender: self)
   }
   
