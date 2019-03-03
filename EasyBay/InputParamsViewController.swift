@@ -77,7 +77,7 @@ class InputParamsViewController: UIViewController, UIPickerViewDelegate, UIPicke
       }
       let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
       if let responseJSON = responseJSON as? [String: Any] {
-        print(responseJSON)
+        //print(responseJSON)
         self.responseJSON = responseJSON
       }
       sem.signal()
