@@ -1,36 +1,29 @@
 # EasyBay
+*A one-stop shopping app that uses object localization and ML scam detection to provide secure eBay results.*
+
+## Inspiration
+How often did you really want to impulsively buy a cute outfit or a sleek usb to usb-c convertor that your friend has, only to realize that they bought it for a really high price? We have felt this too often. So naturally, easyBay was the best solution to our problems.
 
 
-## Headers
+## What It Does
+The user may take a photo or use an existing one and our app will automatically identify the plausible items and provide a list of items from eBay that match their specifications the best, while simultaneously also removing any scam sellers from the search. easyBay is capable of using Google Cloud's Vision API and its own ML based scam detector to search an image for the least expensive, but most secure buying options on eBay. easyBuy then provides you with listings from eBay that best match your search criteria, also notifying you of potential scam listings.
 
-**Authorization**
-Bearer v^1.1#i^1#r^0#p^1#f^0#I^3#t^H4sIAAAAAAAAAOVXf2wTVRxf95MfK/gHzLlArIcaldz17tpeewetdBtkVWBznXPMwHy9e7cdXO+ae6+MhiyUBTBiYmKixhg0ZEaFhEQ2JBCnkQAxMSCCEE00akiIgWgIMJBISPDdrYxuEtigAonNJc193/d93/fz+X6+791js+WTn9nUsOmy21VRvDXLZotdLm4qO7m8bO60kuKasiI2z8G1Nft4trS35PR8BJJ6SmqGKGUaCHrWJHUDSY4xTKUtQzIB0pBkgCREEpaleHTJYolnWCllmdiUTZ3yxOrDVEJkg0EWKEEVqnKIh8RqXI/ZYoYpjgyFEiGfPxgIJvhQkIwjlIYxA2Fg4DDFs5xIsz6a5Vs4UQoEJU5kBB/bTnlaoYU00yAuDEtFnHQlZ66Vl+utUwUIQQuTIFQkFl0Ub4zG6hcubZnvzYsVyfEQxwCn0ei3OlOBnlagp+Gtl0GOtxRPyzJEiPJGhlcYHVSKXk/mDtJ3qPYn/LIg+vyqj4OKLKsFoXKRaSUBvnUetkVTaNVxlaCBNZy5HaOEjcRKKOPc21ISIlbvsf9eSANdUzVohamFtdFl0aYmKhK1MsCIWia9EKBMLcjQTc31tMAJCgwIikz7FKj6goKSW2c4WI7lMQvVmYai2Zwhz1IT10KSNBxLjT+PGuLUaDRaURXbCeX58dx1Cnm+3a7pcBHTuMuwywqThAeP83r7AozMxtjSEmkMRyKMHXAYClMgldIUauygI8WcetagMNWFcUryeru7u5luH2NanV6eZTlv25LFcbkLJgFl+9q97vhrt59Aaw4UmXQx8ZdwJkVyWUOkShIwOqmILxTguWCO99FpRcZa/2XIw+wd3RCFahBF5UFQEBOiKvAACEIhGiSS06jXzgMmiDSTwFoFcUoHMqRlorN0ElqaIvkCKu8LqZBWBFGl/aKq0omAItCcCiELYSIhi6H/UZ+MV+lx2UzBJlPX5Exh9F4wrVtKE7BwJg51nRjGK/qbgkQ2yHsAz+71CUC0YyASBKQ0xpY2I5tJrwnInmabOpys7wp3NJWKJZNpDBI6jBVoP7s/e9lN4WnksH+gMJH6DRdSU4ZPacapJoNWy4wFkZm2yAcK02ifWi3mKmiQTQBbpq5Dq5W760I/YPWd2FZ5Z7ALeExPGDbpdea/k7asa0RBHfcN3X0sqgbwgwWaCwTIIwg+8a5w1Tklbcnck5NoAvAaTIThuEs2gY9K7+gbbqTI+XG9rt1sr6ufXJJZL/sEN4d9rLzkxdKSyhqkYchoQGWQ1mmQi5sFmVUwkwKaVVzuennWzu0deXfqrcvZ6pFb9eQSbmreFZuddWOkjJv+sJsTWR/Lc2IgyInt7Jwbo6VcVemM7f7ptcdmHmytPnvho5d2nPq+YUHoTdY94uRylRWV9rqKtMGBdMu0T/aqlw4cav75wrNt7yq/Xo7v7a8ZQDua3xGerK7aIP7et/aRk699sP700NVd3f6Svz4/O0+pDJo9vSszv7RNuTr3yz/5hpmDFwX360v6Bo/iw90hfeWBuSt6Tm5bUJ0trTzhPlZR+dbQlcDGZQ1vDGb767YcA3DtrCn08ehTW/ZP2j7p49mg3zo+9Wmp76svLu0+eu385u/WHRr4bc9DHx7R9lWw593tG356tPHtvvc7VXXPvD+qYoz70vor6pGKvy/+8PWMnqGNhw8f/PHIvuOvJmq6nuvZPHTq+ROXO84MnJu2+rN1K86cvvbNfvqEta1Ne88wX/n06K4r51Ys3/nt7KgWr15cPly+fwBZssAI7RAAAA==
 
-**Content-Type** 
-application/json
+## How We Built It
+**Google Cloud Vision API**
 
-**X-EBAY-C-ENDUSERCTX** affiliateCampaignId=<ePNCampaignId>,affiliateReferenceId=<referenceId>
+**Keras**
 
-## GET Request for querying by keyword
-```GET https://api.ebay.com/buy/browse/v1/item_summary/search?q=nike```
+**eBay APIs**
 
-Key q=                
-*(Add keyword search)*
+Finding API
+Browse API
+Shopping API
+We built easyBay as an iOS app , which we built on Xcode with Swift. The app fetched the required data by making the necessary API calls using the URLRequest and URLSession built-in protocol. The eBay API is essential to this application. Its Finding API and Shopping AI allowed us to get more information on the sellers and the specifics of the products that they sell.
 
-Key filter= price:[..69],priceCurrency:USD,conditions:{NEW},deliveryPostalCode:90024,deliveryCountry:US,returnsAccepted:true,excludeSellers:{solesurrender}                                           
+We then passed this data using our ML model which could then make an accurate prediction of the "suspicion rating" of the seller. This was an ML model that we built form scratch using Keras and Tensorflow. We trained it on data received from eBay POST requests and did extensive research on string indicators of scam sellers. In this process, we also took into account some guidelines and tips to avoid scams laid out by eBay in their official documentation. This feature is essential for users who would like to only deal with unsuspicious and non-fraudulent sellers, which is often a major problem for users shopping on eBay.
 
-*( price:[..maxAmt], conditions:{NEW or USED}, deliveryPostalCode: postal code, returnsAccepted:(true or empty), excludeSellers:{ebay ID number} )*
+We also extensively used the Browse API that enabled the app search by image giving the user seamless experience. It also enabled us to create one of the most important features of the app: the image search. However, it is not just any ordinary image search. We first pass the user's image to Google Cloud's Vision API which locates and classifies objects. We crop the images based on the data returned and then, pass those to the eBay Browse API that locates EACH object in the picture. Furthermore, you can also add filters to your search for example, a budget (price), delivery postal code, For example, say you loved the clothes your friend is wearing but you you have a slim budget? No problem, because EasyBay lets you quickly take a picture of your friend and search for all clothing items available at the budget you selected!
 
-## POST Request for image search
-```POST https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=20```
-
-Key limit =                 
-*( enter number of results required)*
-
-Key filter= price:[..69],priceCurrency:USD,conditions:{NEW},deliveryPostalCode:90024,deliveryCountry:US,returnsAccepted:true,excludeSellers:{solesurrender}
-
-*( price:[..maxAmt], conditions:{NEW or USED}, deliveryPostalCode: postal code, returnsAccepted:(true or empty), excludeSellers:{ebay ID number} )*
-
-{
-  "image": " " // Base64 string
-}
+## What's Next for easyBay
+There were numerous features we wanted to add for easyBay but ran out of time for. One of the most prominent was to add the ability for the user to purchase the item they liked straight from our app using Ebay’s Buy API.  This way our app acts as the start point and end point of the user experience from uploading or taking a picture to completing the payment on the app. We also hope to improve the accuracy of our eBay product listings by being able to filter out repetitive images from our Google Cloud Vision software. Due to the nested structure of our vision processing, there are a decent amount of duplicate images as a by product. Our goal is to find a way to remove those duplicates in order to make easyBay more efficient and more accurate. One major feature we want to implement in the future is the usage of easyBay as a means of finding stolen items. Through additional user information and eBay’s reverse image search, we want to be able to pinpoint a user’s item that has been stolen and is being resold on eBay. One example is with MacBooks. Every MacBook has a serial number and many listings on eBay would list the serial number in order to gain validity. Our application would take the user’s picture of their Mac and reverse search it and compare the serial numbers to see if the user’s laptop is being resold on eBay
