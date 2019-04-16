@@ -1,5 +1,6 @@
 # EasyBay
 *A one-stop shopping app that uses object localization and ML scam detection to provide secure eBay results.*
+
 **Built for Hacktech 2019 | Won sponsored prize by eBay**
 
 Link: https://devpost.com/software/easybay-ts2gwo
